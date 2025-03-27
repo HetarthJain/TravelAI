@@ -1,0 +1,145 @@
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+/* Base Variables */
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #2b2d42;
+  --primary-foreground: #e0e1dd;
+  --secondary: #d9d9d9;
+  --secondary-foreground: #2b2d42;
+  --muted: #d9d9d9;
+  --muted-foreground: #6c757d;
+  --accent: #d9d9d9;
+  --accent-foreground: #2b2d42;
+  --destructive: #e63946;
+  --destructive-foreground: #e0e1dd;
+  --border: #cbd5e1;
+  --input: #cbd5e1;
+  --ring: #1a1a1a;
+  --radius: 8px;
+  --sidebar-background: #f8f9fa;
+  --sidebar-foreground: #424242;
+  --sidebar-primary: #1c1c1c;
+  --sidebar-primary-foreground: #f8f9fa;
+  --sidebar-accent: #e9ecef;
+  --sidebar-accent-foreground: #1c1c1c;
+  --sidebar-border: #b0b0b0;
+  --sidebar-ring: #3b82f6;
+}
+
+/* Dark Mode */
+.dark {
+  --background: #1a1a1a;
+  --foreground: #e0e1dd;
+  --card: #1a1a1a;
+  --card-foreground: #e0e1dd;
+  --popover: #1a1a1a;
+  --popover-foreground: #e0e1dd;
+  --primary: #e0e1dd;
+  --primary-foreground: #2b2d42;
+  --secondary: #333;
+  --secondary-foreground: #e0e1dd;
+  --muted: #333;
+  --muted-foreground: #aaa;
+  --accent: #333;
+  --accent-foreground: #e0e1dd;
+  --destructive: #c53030;
+  --destructive-foreground: #e0e1dd;
+  --border: #333;
+  --input: #333;
+  --ring: #9ca3af;
+  --sidebar-background: #121212;
+  --sidebar-foreground: #e9ecef;
+  --sidebar-primary: #007bff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1f1f1f;
+  --sidebar-accent-foreground: #e9ecef;
+  --sidebar-border: #1f1f1f;
+  --sidebar-ring: #3b82f6;
+}
+
+/* Base Styles */
+* {
+  border-color: var(--border);
+  
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
