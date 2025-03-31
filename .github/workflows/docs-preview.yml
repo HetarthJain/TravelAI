@@ -32,7 +32,13 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy ./dist --project-name=my-docs
+          command: pages deploy ./dist --project-name=my-docs | tee wrangler_output.txt
+      
+      - name: Extract Deployment URL
+        id: extract-url
+        run: |
+          DEPLOYMENT_URL=$(grep -oP 'https://\S+\.pages.dev' wrangler_output.txt | head -n 1)
+          echo "DEPLOYMENT_URL=$DEPLOYMENT_URL" >> $GITHUB_ENV
         # run: |
           # CLOUDFLARE_URL=$(npx wrangler pages deploy ./dist --project-name=my-docs --branch "pr-${{ github.event.number }}" --commit-dirty=true)
           # echo "DEPLOYMENT_URL=$CLOUDFLARE_URL" >> $GITHUB_ENV
