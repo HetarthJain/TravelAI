@@ -16,6 +16,9 @@ jobs:
       - name: Install Dependencies
         run: npm install  # Adjust for yarn or pnpm
 
+      - name: Install Wrangler  # ✅ Install Wrangler globally
+        run: npm install -g wrangler
+
       - name: Build Site
         run: npm run build  # Adjust based on static site generator
 
@@ -27,7 +30,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Comment on PR with Preview Link
-        uses: actions/github-script@v6
+        uses: actions/github-script@v6  # ✅ Using GitHub Script for PR comment
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
