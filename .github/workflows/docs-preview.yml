@@ -21,7 +21,7 @@ jobs:
 
       - name: Deploy to Cloudflare Pages
         run: |
-          CLOUDFLARE_URL=$(npx wrangler pages deploy ./build --project-name=my-docs --branch "pr-${{ github.event.number }}" --commit-dirty=true)
+          CLOUDFLARE_URL=$(npx wrangler pages deploy ./build --project-name=travelai --branch "pr-${{ github.event.number }}" --commit-dirty=true)
           echo "DEPLOYMENT_URL=$CLOUDFLARE_URL" >> $GITHUB_ENV
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
