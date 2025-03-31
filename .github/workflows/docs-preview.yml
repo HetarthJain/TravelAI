@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - 'docs/**'  # Trigger only when files in the docs folder change
+  push:
+    branches:
+      - main  # ✅ Runs on commits pushed to "main"
 
 jobs:
   deploy-preview:
