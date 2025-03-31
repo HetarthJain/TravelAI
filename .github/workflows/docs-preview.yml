@@ -1,0 +1,32 @@
+name: Docs Preview on PR
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'  # Trigger only when files in the docs folder change
+
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install Dependencies
+        run: npm install  # Adjust for yarn or pnpm
+
+      - name: Build Site
+        run: npm run build  # Adjust based on static site generator
+
+      - name: Deploy to Cloudflare Pages
+        run: |
+          CLOUDFLARE_URL=$(npx wrangler pages deploy ./build --project-name=my-docs --branch "pr-${{ github.event.number }}" --commit-dirty=true)
+          echo "DEPLOYMENT_URL=$CLOUDFLARE_URL" >> $GITHUB_ENV
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      - name: Comment on PR with Preview Link
+        uses: thollander/actions-comment-on-pr@v2
+        with:
+          message: "🚀 Docs Preview: [View Here](${{ env.DEPLOYMENT_URL }})"
