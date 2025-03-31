@@ -8,6 +8,11 @@ on:
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read  # Read access to the repo
+      pull-requests: write  # ✅ Grant permission to comment on PRs
+
+
 
     steps:
       - name: Checkout Repository
@@ -16,18 +21,26 @@ jobs:
       - name: Install Dependencies
         run: npm install  # Adjust for yarn or pnpm
 
+      - name: Install Wrangler  # ✅ Install Wrangler globally
+        run: npm install -g wrangler
+
       - name: Build Site
         run: npm run build  # Adjust based on static site generator
 
       - name: Deploy to Cloudflare Pages
-        run: |
-          CLOUDFLARE_URL=$(npx wrangler pages deploy ./build --project-name=travelai --branch "pr-${{ github.event.number }}" --commit-dirty=true)
-          echo "DEPLOYMENT_URL=$CLOUDFLARE_URL" >> $GITHUB_ENV
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy ./dist --project-name=my-docs
+        # run: |
+          # CLOUDFLARE_URL=$(npx wrangler pages deploy ./dist --project-name=my-docs --branch "pr-${{ github.event.number }}" --commit-dirty=true)
+          # echo "DEPLOYMENT_URL=$CLOUDFLARE_URL" >> $GITHUB_ENV
+        # env:
+          # CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Comment on PR with Preview Link
-        uses: actions/github-script@v6
+        uses: actions/github-script@v6  # ✅ Using GitHub Script for PR comment
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |

@@ -21,7 +21,7 @@
    docker load -i fast-api-rc.tar
    ```
 
-3. Run the backend services:
-   ```sh
-   docker compose up
+3. Run the frontend:
+   ```
+   npm run start
    ```
