@@ -27,6 +27,13 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Comment on PR with Preview Link
-        uses: thollander/actions-comment-on-pr@v2
+        uses: actions/github-script@v6
         with:
-          message: "🚀 Docs Preview: [View Here](${{ env.DEPLOYMENT_URL }})"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: ${{ github.event.number }},
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: "🚀 Docs Preview: [View Here](${{ env.DEPLOYMENT_URL }})"
+            });
