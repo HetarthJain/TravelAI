@@ -8,6 +8,11 @@ on:
 jobs:
   deploy-preview:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read  # Read access to the repo
+      pull-requests: write  # ✅ Grant permission to comment on PRs
+
+
 
     steps:
       - name: Checkout Repository
